@@ -3,7 +3,7 @@ pipeline{
    stages{
         stage('checkout'){
             steps{
-                withCredentials([string(credentialsId: 'Ashish_DemoGit', variable: 'bizeet')]) 
+                withCredentials([string(credentialsId: 'Ashish_DemoGit', variable: bizeet)]) 
                 checkout([$class: 'GitSCM',
                 branches: [[name: 'origin/dev']],
                 extensions: [[$class: 'WipeWorkspace']],
