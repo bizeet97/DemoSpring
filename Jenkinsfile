@@ -4,10 +4,10 @@ pipeline{
         stage('checkout'){
             steps{
                 withCredentials([string(credentialsId: 'Ashish_DemoGit', variable: 'bz')])
-                branches: [[name: 'origin/dev']],
+                branches: [[name: 'origin/dev']]
+            }
                 extensions: [[$class: 'WipeWorkspace']],
-                userRemoteConfigs: [[url: "${bz}"]]
-                }
+                userRemoteConfigs: [[url: "${bz}"]
             }
      
              stage ('build & Test'){
