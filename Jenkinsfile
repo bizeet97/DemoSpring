@@ -1,36 +1,28 @@
 pipeline{
     agent any
    stages{
-     //   stage('checkout'){
-       //     steps{
-         //       withCredentials([string(credentialsId: 'Ashish_DemoGit', variable: 'bz')])
-           //     branches: [[name: 'origin/dev']]
-            //}
-              //  extensions: [[$class: 'WipeWorkspace']]
-                //userRemoteConfigs: [[url: "${bz}"]
-           // }
-     
-             stage ('build & Test'){
+             stage ('build & Test')
+       {
             steps{
                 sh "mvn clean install"
-               
             }
         }
-         stage('Sonar') 
+             stage('Sonar') 
          {
-           environment {
-           scannerHome=tool 'sonar scanner'
+             environment {
+               scannerHome=tool 'sonar scanner'
        }
-            steps {
+                steps {
                 sh "mvn sonar:sonar -Dsonar.host.url=http://3.14.251.87:9000"
             }
          }
         
-         stage ('Uploading  to nexus'){
-            steps{
+               stage ('Uploading  to nexus'){
+                  
+                   steps{
              withCredentials([usernamePassword(credentialsId: 'Bizeet_nexus', passwordVariable: 'pass', usernameVariable: 'usr')]) 
-                {
-     sh   'curl -u $usr:$pass --upload-file target/springapp-${BUILD_NUMBER}.war http://3.14.251.87:8081/nexus/content/repositories/devopstraining/Bizeet_Nexus_Test3/springapp-${BUILD_NUMBER}.war'
+                 {
+    sh   'curl -u $usr:$pass --upload-file target/springapp-${BUILD_NUMBER}.war http://3.14.251.87:8081/nexus/content/repositories/devopstraining/Bizeet_Nexus_Test3/springapp-${BUILD_NUMBER}.war'
 }           
         }
          }
