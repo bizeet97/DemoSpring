@@ -1,14 +1,14 @@
 pipeline{
     agent any
    stages{
-        stage('checkout'){
-            steps{
-                withCredentials([string(credentialsId: 'Ashish_DemoGit', variable: 'bz')])
-                branches: [[name: 'origin/dev']]
-            }
-                extensions: [[$class: 'WipeWorkspace']],
-                userRemoteConfigs: [[url: "${bz}"]
-            }
+     //   stage('checkout'){
+       //     steps{
+         //       withCredentials([string(credentialsId: 'Ashish_DemoGit', variable: 'bz')])
+           //     branches: [[name: 'origin/dev']]
+            //}
+              //  extensions: [[$class: 'WipeWorkspace']]
+                //userRemoteConfigs: [[url: "${bz}"]
+           // }
      
              stage ('build & Test'){
             steps{
