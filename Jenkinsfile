@@ -7,7 +7,6 @@ pipeline{
                 branches: [[name: 'origin/dev']]
                 extensions: [[$class: 'WipeWorkspace']]
                 userRemoteConfigs: [[url: "${bz}"]]
-                ])
                 }
             }
      
